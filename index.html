@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TravelOps CRM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Основная навигация">
+        <div class="brand">
+          <div class="brand-mark">TO</div>
+          <div>
+            <h1>TravelOps</h1>
+            <p>CRM для туроператора</p>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item" type="button" data-view="dashboard">
+            <span class="nav-icon"><svg><use href="#icon-dashboard"></use></svg></span>
+            <span>Дашборд</span>
+          </button>
+          <span class="nav-section-title">Клиенты</span>
+          <button class="nav-item" type="button" data-view="requests">
+            <span class="nav-icon"><svg><use href="#icon-requests"></use></svg></span>
+            <span>Заявки</span>
+          </button>
+          <button class="nav-item" type="button" data-view="clients">
+            <span class="nav-icon"><svg><use href="#icon-users"></use></svg></span>
+            <span>Клиенты</span>
+          </button>
+          <button class="nav-item" type="button" data-view="program">
+            <span class="nav-icon"><svg><use href="#icon-calendar"></use></svg></span>
+            <span>Программа</span>
+          </button>
+          <span class="nav-section-title">Учет</span>
+          <button class="nav-item" type="button" data-view="finance">
+            <span class="nav-icon"><svg><use href="#icon-wallet"></use></svg></span>
+            <span>Финансы</span>
+          </button>
+          <span class="nav-section-title">Логистика</span>
+          <button class="nav-item" type="button" data-view="transport">
+            <span class="nav-icon"><svg><use href="#icon-transport"></use></svg></span>
+            <span>Транспорт</span>
+          </button>
+          <button class="nav-item" type="button" data-view="arrivals">
+            <span class="nav-icon"><svg><use href="#icon-plane-arrive"></use></svg></span>
+            <span>Прилёты</span>
+          </button>
+          <button class="nav-item" type="button" data-view="departures">
+            <span class="nav-icon"><svg><use href="#icon-plane-depart"></use></svg></span>
+            <span>Вылеты</span>
+          </button>
+          <button class="nav-item" type="button" data-view="cars">
+            <span class="nav-icon"><svg><use href="#icon-car"></use></svg></span>
+            <span>Автомобили</span>
+          </button>
+          <span class="nav-section-title">Связь</span>
+          <button class="nav-item" type="button" data-view="messages">
+            <span class="nav-icon"><svg><use href="#icon-message"></use></svg></span>
+            <span>Сообщения</span>
+          </button>
+          <span class="nav-section-title">Система</span>
+          <button class="nav-item" type="button" data-view="automation">
+            <span class="nav-icon"><svg><use href="#icon-automation"></use></svg></span>
+            <span>Автоматизации</span>
+          </button>
+          <button class="nav-item" type="button" data-view="settings">
+            <span class="nav-icon"><svg><use href="#icon-settings"></use></svg></span>
+            <span>Настройки</span>
+          </button>
+          <button class="nav-item" type="button" data-view="journal">
+            <span class="nav-icon"><svg><use href="#icon-journal"></use></svg></span>
+            <span>Журнал</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <div>
+            <strong>MAX бот активен</strong>
+            <span>Анкета готова к приему заявок</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="page-title">
+            <span class="eyebrow">TravelOps CRM</span>
+            <h2 id="pageHeading">Дашборд</h2>
+          </div>
+          <label class="search-box">
+            <span>Поиск</span>
+            <input id="globalSearch" type="search" placeholder="Имя, телефон, маршрут, статус..." />
+          </label>
+          <div class="topbar-actions">
+            <button class="button primary" type="button" data-action="openNewRequest"><svg class="button-icon"><use href="#icon-plus"></use></svg><span>Новая заявка</span></button>
+          </div>
+        </header>
+
+        <section id="appContent" class="content" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <aside id="detailPanel" class="detail-panel" aria-label="Карточка заявки" aria-hidden="true"></aside>
+    <nav class="mobile-tabbar" aria-label="Мобильная навигация">
+      <button type="button" data-view="dashboard">
+        <svg><use href="#icon-dashboard"></use></svg>
+        <span>Главная</span>
+      </button>
+      <button type="button" data-view="requests">
+        <svg><use href="#icon-requests"></use></svg>
+        <span>Заявки</span>
+      </button>
+      <button type="button" data-view="clients">
+        <svg><use href="#icon-users"></use></svg>
+        <span>Клиенты</span>
+      </button>
+      <button type="button" data-view="transport">
+        <svg><use href="#icon-transport"></use></svg>
+        <span>Логистика</span>
+      </button>
+      <button type="button" data-action="openMobileMore">
+        <svg><use href="#icon-automation"></use></svg>
+        <span>Еще</span>
+      </button>
+    </nav>
+    <div id="modalRoot"></div>
+    <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-dashboard" viewBox="0 0 24 24"><path d="M4 13h6v7H4zM14 4h6v16h-6zM4 4h6v5H4z"/></symbol>
+      <symbol id="icon-requests" viewBox="0 0 24 24"><path d="M7 4h10l3 3v13H7z"/><path d="M9 12h6M9 16h4"/></symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM4 20a5 5 0 0 1 10 0"/><path d="M16 11a2.5 2.5 0 0 0 0-5M15 15a4 4 0 0 1 5 4"/></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M5 5h14v15H5zM8 3v4M16 3v4M5 10h14"/></symbol>
+      <symbol id="icon-plane-arrive" viewBox="0 0 24 24"><path d="M3 18h18M5 7l14 5-1.5 3-5.5-1.5-3 3-2-1 1.5-3.5L4 10z"/></symbol>
+      <symbol id="icon-plane-depart" viewBox="0 0 24 24"><path d="M3 20h18M5 15l14-5-1.5-3-5.5 1.5-3-3-2 1L8.5 10 4 12z"/></symbol>
+      <symbol id="icon-transport" viewBox="0 0 24 24"><path d="M4 17h16M6 6h12l2 5v6H4V9z"/><path d="M8 17v2M16 17v2M7 11h10M8 14h.01M16 14h.01"/></symbol>
+      <symbol id="icon-car" viewBox="0 0 24 24"><path d="M5 16h14l-1.5-5h-11zM7 16v3M17 16v3M8 19h.01M16 19h.01M7 11l1.5-4h7L17 11"/></symbol>
+      <symbol id="icon-message" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 13h5"/></symbol>
+      <symbol id="icon-automation" viewBox="0 0 24 24"><path d="M4 7h7M13 7h7M6 7a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/><path d="M4 17h7M13 17h7M14 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/></symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2M6.5 6.5l1.4 1.4M16.1 16.1l1.4 1.4M17.5 6.5l-1.4 1.4M7.9 16.1l-1.4 1.4"/></symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+      <symbol id="icon-wallet" viewBox="0 0 24 24"><path d="M4 7h15a2 2 0 0 1 2 2v9H4z"/><path d="M4 7l11-3 2 3"/><path d="M16 13h3"/></symbol>
+      <symbol id="icon-journal" viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 1-2-5"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+    </svg>
+
+    <script src="app.js"></script>
+  </body>
+</html>
