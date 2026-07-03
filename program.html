@@ -1,1 +1,464 @@
-@.pages-web/program.html
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Программа тура · TravelOps</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e7681;
+      --line: #dfe5ee;
+      --blue: #0a66d5;
+      --blue-dark: #17406f;
+      --green: #e8f7ef;
+      --green-text: #126b47;
+      --shadow: 0 18px 50px rgba(20, 35, 55, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--blue);
+      color: white;
+      font-weight: 800;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      min-height: 310px;
+      background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.52)), var(--image);
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      color: white;
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(14px);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(34px, 7vw, 62px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .summary {
+      margin: 0;
+      max-width: 640px;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .quick-item {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: #fbfcff;
+    }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .value {
+      display: block;
+      margin-top: 5px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      padding: 20px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .days {
+      display: grid;
+      gap: 10px;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 12px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 13px;
+      background: #fbfcff;
+    }
+
+    .day-number {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #edf5ff;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .day p {
+      margin: 0;
+      line-height: 1.45;
+      color: #343b44;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--green-text);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    li {
+      display: flex;
+      gap: 10px;
+      line-height: 1.45;
+      color: #343b44;
+    }
+
+    li::before {
+      content: "";
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .cta {
+      position: sticky;
+      bottom: 12px;
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
+      pointer-events: none;
+    }
+
+    .cta a {
+      pointer-events: auto;
+      width: min(440px, 100%);
+      padding: 15px 18px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 16px 30px rgba(10, 102, 213, .25);
+    }
+
+    @media (max-width: 760px) {
+      .shell { padding: 12px; }
+      .hero { border-radius: 22px; }
+      .hero-image { min-height: 420px; padding: 18px; }
+      .quick, .grid { grid-template-columns: 1fr; }
+      .quick { padding: 12px; }
+      .card { padding: 16px; border-radius: 20px; }
+      .topbar { align-items: flex-start; }
+      .day { grid-template-columns: 46px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">TO</div>
+        <div>
+          <strong>TravelOps</strong>
+          <span>программа тура</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero" id="hero">
+      <div class="hero-image" id="heroImage">
+        <div class="hero-content">
+          <span class="eyebrow" id="eyebrow"></span>
+          <h1 id="title"></h1>
+          <p class="summary" id="summary"></p>
+        </div>
+      </div>
+      <div class="quick">
+        <div class="quick-item">
+          <span class="label">Длительность</span>
+          <span class="value" id="duration"></span>
+        </div>
+        <div class="quick-item">
+          <span class="label">Ориентир цены</span>
+          <span class="value" id="price"></span>
+        </div>
+        <div class="quick-item">
+          <span class="label">Формат</span>
+          <span class="value" id="format"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Маршрут по дням</h2>
+        <div class="days" id="days"></div>
+      </article>
+      <aside class="card">
+        <h2>Что входит</h2>
+        <div class="chips" id="highlights"></div>
+        <ul id="includes"></ul>
+        <h2 style="margin-top:22px">Обычно отдельно</h2>
+        <ul id="extra"></ul>
+      </aside>
+    </section>
+
+    <div class="cta">
+      <a href="https://max.ru/id2540295426_bot">Обсудить тур в MAX</a>
+    </div>
+  </main>
+
+  <script>
+    const tours = [
+      {
+        id: "sakhalin-5",
+        emoji: "🌿",
+        title: "Сахалин на 5 дней",
+        duration: "5 дней",
+        price: "от 180 000 ₽",
+        format: "первое знакомство",
+        image: "https://cultsakhalin.ru/uploads/bd38de48d85149620a7d3f37e509b40c_w600_h400_cx0_cy0_cw1280_ch853.jpg",
+        summary: "Классика для первого визита: Южно-Сахалинск, побережье, бухта Тихая, маяк Анива и локальная кухня.",
+        highlights: ["Южно-Сахалинск", "бухта Тихая", "маяк Анива", "морская кухня"],
+        includes: ["трансферы по программе", "экскурсии с гидом", "помощь с проживанием", "памятка туриста"],
+        extra: ["авиабилеты", "личные расходы", "питание вне программы", "индивидуальные активности"],
+        days: ["Встреча, заселение и мягкое знакомство с городом.", "Бухта Тихая, побережье и видовые остановки.", "Маяк Анива или альтернативный морской маршрут по погоде.", "Локальная кухня, рынки, свободное время.", "Выезд, трансфер и рекомендации на следующий визит."],
+      },
+      {
+        id: "aniva-tikhaya",
+        emoji: "🌊",
+        title: "Анива + бухта Тихая",
+        duration: "4 дня",
+        price: "от 145 000 ₽",
+        format: "фото и море",
+        image: "https://1zoom.club/uploads/posts/2023-05/1684282522_1zoom-club-p-mayak-aniva-deistvuyushchii-1.jpg",
+        summary: "Маршрут для тех, кто хочет самые узнаваемые виды Сахалина без длинной экспедиции.",
+        highlights: ["маяк Анива", "бухта Тихая", "мыс Великан", "видовые остановки"],
+        includes: ["гид", "трансфер к локациям", "план по погоде", "фототочки маршрута"],
+        extra: ["катер при морском выходе", "авиабилеты", "личные расходы", "повышение категории отеля"],
+        days: ["Прилет, заселение, вечерняя прогулка.", "Бухта Тихая и восточное побережье.", "Маяк Анива: выход по погоде или наземная замена.", "Мыс Великан, сувениры и выезд."],
+      },
+      {
+        id: "busse-yuzhno",
+        emoji: "🦪",
+        title: "Южно-Сахалинск + Буссе",
+        duration: "3 дня",
+        price: "от 75 000 ₽",
+        format: "короткая поездка",
+        image: "https://cultsakhalin.ru/uploads/1fc1be2d5b438058148d3bd795431181_w600_h400_cx0_cy39_cw1024_ch683.jpg",
+        summary: "Компактный маршрут: город, лагуна Буссе, морская гастрономия и вечерняя экскурсия.",
+        highlights: ["Южно-Сахалинск", "лагуна Буссе", "морепродукты", "вечерний город"],
+        includes: ["обзорная экскурсия", "подбор активностей", "трансфер по запросу", "сопровождение менеджера"],
+        extra: ["индивидуальная доплата за Буссе", "авиабилеты", "проживание выше базовой категории"],
+        days: ["Прилет, заселение и обзорная прогулка.", "Лагуна Буссе и гастрономическая программа.", "Свободное время, покупки, трансфер в аэропорт."],
+      },
+      {
+        id: "iturup",
+        emoji: "⛰️",
+        title: "Итуруп: Белые скалы",
+        duration: "6 дней",
+        price: "от 390 000 ₽",
+        format: "Курилы",
+        image: "https://cultsakhalin.ru/uploads/e6db6de65a9fbcaaa19f5ae5620471fd.jpg",
+        summary: "Курильский маршрут с Белыми скалами, черным песком, лавовыми плато и горячими источниками.",
+        highlights: ["Белые скалы", "лавовые плато", "горячие источники", "Охотское море"],
+        includes: ["план перелетов", "местные трансферы", "гид на маршруте", "резервный план по погоде"],
+        extra: ["авиабилеты", "страховка", "питание вне программы", "дополнительные источники"],
+        days: ["Перелет на Итуруп и размещение.", "Белые скалы и черный песок.", "Вулканические плато и горячие источники.", "Свободный день под погоду.", "Локальная кухня и видовые точки.", "Возврат на Сахалин."],
+      },
+      {
+        id: "kunashir",
+        emoji: "🗿",
+        title: "Кунашир: мыс Столбчатый",
+        duration: "7 дней",
+        price: "от 430 000 ₽",
+        format: "Курилы",
+        image: "https://cultsakhalin.ru/uploads/eba45a4acb7afeaf68dcc0a23324808a.jpg",
+        summary: "Маршрут для любителей мощной природы: базальтовые колонны, вулканы, термальные источники и океан.",
+        highlights: ["мыс Столбчатый", "вулканы", "термальные источники", "океанские панорамы"],
+        includes: ["маршрутный план", "трансферы на острове", "гид", "контроль погодных окон"],
+        extra: ["авиабилеты", "питание вне программы", "страховка", "индивидуальный транспорт"],
+        days: ["Перелет и заселение.", "Мыс Столбчатый и побережье.", "Термальные источники.", "Вулканический маршрут по погоде.", "Запасной день.", "Свободное время.", "Возвращение."],
+      },
+      {
+        id: "vip-weekend",
+        emoji: "✨",
+        title: "VIP выходные на Сахалине",
+        duration: "3 дня",
+        price: "от 350 000 ₽",
+        format: "индивидуально",
+        image: "https://1zoom.club/uploads/posts/2023-05/1684282477_1zoom-club-p-mayak-aniva-deistvuyushchii-4.jpg",
+        summary: "Индивидуальная поездка без группы: водитель, красивые локации, рестораны и маршрут под настроение.",
+        highlights: ["персональный водитель", "видовые локации", "рестораны", "гибкий маршрут"],
+        includes: ["персональный маршрут", "водитель", "подбор ресторанов", "связь с менеджером"],
+        extra: ["премиальное проживание", "закрытые экскурсии", "дополнительные брони", "нестандартная логистика"],
+        days: ["Встреча, заселение, ужин.", "Индивидуальный маршрут: море, город или горы.", "Свободное утро, покупки, трансфер."],
+      },
+      {
+        id: "corporate",
+        emoji: "🧭",
+        title: "Корпоративная группа",
+        duration: "3-5 дней",
+        price: "от 1 200 000 ₽",
+        format: "B2B",
+        image: "https://cultsakhalin.ru/uploads/1fc1be2d5b438058148d3bd795431181_w600_h400_cx0_cy39_cw1024_ch683.jpg",
+        summary: "Формат для бизнеса: списки участников, рассадки, трансферы, программа, документы и контроль задач.",
+        highlights: ["групповые трансферы", "участники", "программа мероприятий", "отчетность"],
+        includes: ["список участников", "групповые трансферы", "программа мероприятий", "отчетные документы"],
+        extra: ["дополнительные автомобили", "нестандартные площадки", "персональные маршруты участников"],
+        days: ["Прибытие группы, встреча и расселение.", "Деловая или экскурсионная программа.", "Групповые трансферы и индивидуальные задачи.", "Отчетные документы и выезд."],
+      },
+    ];
+
+    const params = new URLSearchParams(location.search);
+    const tour = tours.find((item) => item.id === params.get("tour")) || tours[0];
+
+    document.title = `${tour.title} · TravelOps`;
+    document.getElementById("heroImage").style.setProperty("--image", `url("${tour.image}")`);
+    document.getElementById("eyebrow").textContent = `${tour.emoji} ${tour.format}`;
+    document.getElementById("title").textContent = tour.title;
+    document.getElementById("summary").textContent = tour.summary;
+    document.getElementById("duration").textContent = tour.duration;
+    document.getElementById("price").textContent = tour.price;
+    document.getElementById("format").textContent = tour.format;
+
+    document.getElementById("days").innerHTML = tour.days.map((day, index) => `
+      <div class="day">
+        <div class="day-number">${index + 1}</div>
+        <p>${day}</p>
+      </div>
+    `).join("");
+    document.getElementById("highlights").innerHTML = tour.highlights.map((item) => `<span class="chip">${item}</span>`).join("");
+    document.getElementById("includes").innerHTML = tour.includes.map((item) => `<li>${item}</li>`).join("");
+    document.getElementById("extra").innerHTML = tour.extra.map((item) => `<li>${item}</li>`).join("");
+  </script>
+</body>
+</html>
